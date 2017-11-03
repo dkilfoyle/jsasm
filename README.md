@@ -1,6 +1,8 @@
-# Quasar App
+# jsasm
 
-> A Quasar project
+> A toy assembler in javascript
+
+Based on https://www.mschweighauser.com/make-your-own-assembler-simulator-in-javascript-part1/
 
 ## Build Setup
 
