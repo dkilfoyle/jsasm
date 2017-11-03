@@ -1,4 +1,4 @@
-<template>
+<template lang="pug">
   <q-layout
     ref="layout"
     view="lHh Lpr fff"
@@ -13,7 +13,7 @@
       </q-btn>
 
       <q-toolbar-title>
-        Quasar App
+        jsasm
         <div slot="subtitle">Running on Quasar v{{$q.version}}</div>
       </q-toolbar-title>
     </q-toolbar>
