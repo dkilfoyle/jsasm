@@ -2,7 +2,6 @@
   q-card
     q-card-title Memory
     q-card-main
-      - var memdump = "memory.data["
       table.q-table.bordered.striped-odd.vertical-separator.horizontal-separator.memdump
         thead
           tr
@@ -27,7 +26,7 @@ import {
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'index',
+  name: 'memory',
   components: {
     QCard,
     QCardTitle,
@@ -54,7 +53,7 @@ export default {
 
 <style lang="stylus">
 .memdump {
-  font-family: Courier New, Courier, monospace
+  font-family: source-code-pro, Courier New;
 }
 
 </style>

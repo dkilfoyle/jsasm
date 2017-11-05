@@ -14,14 +14,16 @@
     div
       CPU
       Memory
+      Editor
 </template>
 
 <script>
 
-console.log('Hello.vue started')
+console.log('Home.vue started')
 
 import CPU from './CPU.vue'
 import Memory from './Memory.vue'
+import Editor from './Editor.vue'
 
 import {
   QLayout,
@@ -50,7 +52,8 @@ export default {
     QItemSide,
     QItemMain,
     CPU,
-    Memory
+    Memory,
+    Editor
   },
   data () {
     return {
