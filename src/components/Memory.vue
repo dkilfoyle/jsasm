@@ -3,15 +3,15 @@
     q-card-title Memory
     q-card-main
       - var memdump = "memory.data["
-      table.q-table.bordered.striped-odd.vertical-separator.horizontal-separator
+      table.q-table.bordered.striped-odd.vertical-separator.horizontal-separator.memdump
         thead
           tr
             td
-            td(v-for="hex in hexadec") {{ hex }}
+            td(v-for="n in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]") {{ n | toHex }}
         tbody
           tr(v-for="memrow in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]")
-            th {{ hexadec[memrow] }}
-            td(v-for="memcol in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]") {{ memory.data[(memrow*16)+ memcol] }}
+            th {{ memrow | toHex }}
+            td(v-for="memcol in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]") {{ memory.data[(memrow*15)+ memcol] | toHex | pad(2) }}
 </template>
 
 <script>
@@ -33,9 +33,15 @@ export default {
     QCardTitle,
     QCardMain
   },
+  filters: {
+    toHex: function (value) { return (value.toString(16).toUpperCase()) },
+    pad: function (value, size) {
+      var s = '000000' + value
+      return s.substr(s.length - size)
+    }
+  },
   data () {
     return {
-      hexadec: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
     }
   },
   computed: {
@@ -47,5 +53,8 @@ export default {
 </script>
 
 <style lang="stylus">
+.memdump {
+  font-family: Courier New, Courier, monospace
+}
 
 </style>
