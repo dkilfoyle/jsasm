@@ -16,7 +16,7 @@ export default {
     },
     lang: {
       type: String,
-      default: 'javascript'
+      default: 'jsasm'
     },
     theme: {
       type: String,

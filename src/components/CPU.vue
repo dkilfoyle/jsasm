@@ -45,7 +45,7 @@ import {
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'index',
+  name: 'cpu',
   components: {
     QCard,
     QCardTitle,
