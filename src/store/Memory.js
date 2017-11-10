@@ -24,6 +24,12 @@ class Memory {
     this.lastAccess = address
     this.data[address] = value
   }
+  loadBlock (start, end) {
+    if (start < 0 || end < 0 || start > this.data.length || end > this.data.length || start > end) {
+      throw new Error('Memory access violation between ' + start + ' and ' + end)
+    }
+    return this.data.slice(start, end)
+  }
 }
 
 export default Memory

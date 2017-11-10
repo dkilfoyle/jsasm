@@ -14,9 +14,12 @@ import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
 import store from './store/index'
+import lodash from 'lodash'
+import VueLodash from 'vue-lodash'
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
+Vue.use(VueLodash, lodash)
 
 if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')
