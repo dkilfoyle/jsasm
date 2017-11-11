@@ -5,7 +5,6 @@ class CPU {
   constructor () {
     this.reset()
     this.memory = new Memory()
-    console.log(opcodes)
   }
 
   reset () {

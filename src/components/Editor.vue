@@ -2,7 +2,7 @@
   q-card
     q-card-title Source
     q-card-main
-      ACE(:content="asmsource")
+      ACE(:content="asmsource" @editor-update="sourceChanged")
     q-card-actions
       q-btn(@click="assemble") Assemble
       q-btn Run
@@ -77,6 +77,9 @@ print:			; print(C:*from, D:*to)
     assemble: function () {
       this.$store.commit('setMemory', {offset: 1, newdata: 10})
       console.log('hello')
+    },
+    sourceChanged: function (changedSource) {
+      this.asmsource = changedSource
     }
   }
 }
