@@ -75,8 +75,8 @@ print:			; print(C:*from, D:*to)
   },
   methods: {
     assemble: function () {
-      this.$store.commit('setMemory', {offset: 1, newdata: 10})
-      console.log('hello')
+      console.log('Assembling...')
+      this.$store.dispatch('assembleSourceCode', this.asmsource)
     },
     sourceChanged: function (changedSource) {
       this.asmsource = changedSource
