@@ -10,7 +10,7 @@
         tbody
           tr(v-for="memrow in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]")
             th {{ memrow | toHex }}
-            td(v-for="memcol in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]") {{ memory.data[(memrow*15)+ memcol] | toHex | pad(2) }}
+            td(v-for="memcol in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]") {{ memory.data[(memrow*15)+ memcol] | toHex | pad(2) }}
 </template>
 
 <script>
@@ -54,6 +54,9 @@ export default {
 <style lang="stylus">
 .memdump {
   font-family: source-code-pro, Courier New;
+}
+table.memdump td {
+  padding: 0.1rem 0.2rem;
 }
 
 </style>

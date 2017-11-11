@@ -3,6 +3,11 @@
     q-card-title Source
     q-card-main
       ACE(:content="asmsource")
+    q-card-actions
+      q-btn(@click="assemble") Assemble
+      q-btn Run
+      q-btn Step
+      q-btn Reset
 </template>
 
 <script>
@@ -12,7 +17,9 @@ console.log('Editor.vue started')
 import {
   QCard,
   QCardTitle,
-  QCardMain
+  QCardMain,
+  QCardActions,
+  QBtn
 } from 'quasar'
 
 import ACE from './ACE.vue'
@@ -20,13 +27,17 @@ import 'brace/mode/jsasm'
 import 'brace/mode/javascript'
 import 'brace/theme/chrome'
 
+// import { mapGetters } from 'vuex'
+
 export default {
   name: 'editor',
   components: {
     QCard,
     QCardTitle,
     QCardMain,
-    ACE
+    QCardActions,
+    ACE,
+    QBtn
   },
   data () {
     return {
@@ -61,7 +72,14 @@ print:			; print(C:*from, D:*to)
     }
   },
   computed: {
-  }}
+  },
+  methods: {
+    assemble: function () {
+      this.$store.commit('setMemory', {offset: 1, newdata: 10})
+      console.log('hello')
+    }
+  }
+}
 </script>
 
 <style lang="stylus">

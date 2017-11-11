@@ -6,16 +6,18 @@
       q-toolbar-title jsasm
         div(slot="subtitle") Running on Quasar v{{$q.version}}
 
-    div(slot="left")
-      q-list(no-border link inset-delimiter)
-        q-list-header
-          p Essential Links
+    //- div(slot="left")
+    //-   q-list(no-border link inset-delimiter)
+    //-     q-list-header
+    //-       p Essential Links
 
-    div
-      CPU
-      Memory
-      Console
-      Editor
+    .row
+      .col
+        Editor
+      .col
+        Console
+        CPU
+        Memory
 </template>
 
 <script>

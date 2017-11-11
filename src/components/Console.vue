@@ -2,10 +2,8 @@
   q-card
     q-card-title Console
     q-card-main
-      table.q-table.bordered.striped-odd.vertical-separator.horizontal-separator.memdump
-        tbody
-          tr
-            td(v-for="c in memory.data.slice(232,255)") {{ c | toChar }}
+      .row
+        .consoleChar(v-for="c in memory.data.slice(232,255)") {{ c | toChar }}
 </template>
 
 <script>
@@ -50,6 +48,13 @@ export default {
 <style lang="stylus">
 .memdump {
   font-family: source-code-pro, Courier New;
+}
+.consoleChar {
+  width: 1em;
+  margin-right: 1px;
+  margin-left: 1px;
+  text-align: center;
+  background-color: #DFDFDF;
 }
 
 </style>

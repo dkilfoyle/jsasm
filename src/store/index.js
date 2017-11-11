@@ -22,6 +22,7 @@ export default new Vuex.Store({
     memory: (state) => { return (state.cpu.memory) }
   },
   mutations: {
+    setMemory: (state, payload) => { state.cpu.memory.data.splice(payload.offset, 1, payload.newdata) }
   },
   actions: {
     rootAction1 (context) {
