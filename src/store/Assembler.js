@@ -1,6 +1,11 @@
 import opcodes from './OpCodes'
 
 class Assembler {
+  constructor () {
+    this.code = []
+    this.labels = []
+    this.mapping = {}
+  }
   assemble (input) {
     // Use https://www.debuggex.com/
     // Matches: "label: INSTRUCTION (["')OPERAND1(]"'), (["')OPERAND2(]"')
@@ -570,6 +575,10 @@ class Assembler {
         }
       }
     }
+
+    this.code = code
+    this.mapping = mapping
+    this.labels = labels
 
     return ({ code: code, mapping: mapping, labels: labels })
   }

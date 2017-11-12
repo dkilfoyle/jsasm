@@ -18,6 +18,7 @@
         Console
         CPU
         Memory
+        Labels
 </template>
 
 <script>
@@ -28,6 +29,7 @@ import CPU from './CPU.vue'
 import Memory from './Memory.vue'
 import Editor from './Editor.vue'
 import Console from './Console.vue'
+import Labels from './Labels.vue'
 
 import {
   QLayout,
@@ -58,7 +60,8 @@ export default {
     CPU,
     Memory,
     Editor,
-    Console
+    Console,
+    Labels
   },
   data () {
     return {

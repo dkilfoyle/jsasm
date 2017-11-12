@@ -22,7 +22,7 @@ export default new Vuex.Store({
     carry: (state) => { return (state.cpu.carry) },
     fault: (state) => { return (state.cpu.fault) },
     memory: (state) => { return (state.cpu.memory) },
-    assembler: (state) => { return (state.assmbler) }
+    assembler: (state) => { return (state.assembler) }
   },
   mutations: {
     setMemory: (state, payload) => { state.cpu.memory.data.splice(payload.offset, payload.data.length, ...payload.data) }
