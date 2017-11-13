@@ -6,8 +6,8 @@
     q-card-actions
       q-btn(@click="assemble") Assemble
       q-btn Run
-      q-btn Step
-      q-btn Reset
+      q-btn(@click="step") Step
+      q-btn(@click="reset") Reset
 </template>
 
 <script>
@@ -80,6 +80,14 @@ print:			; print(C:*from, D:*to)
     },
     sourceChanged: function (changedSource) {
       this.asmsource = changedSource
+    },
+    reset: function () {
+      console.log('Resetting...')
+      this.$store.dispatch('reset')
+    },
+    step: function () {
+      console.log('Step...')
+      this.$store.dispatch('step')
     }
   }
 }

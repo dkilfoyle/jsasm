@@ -25,12 +25,24 @@ export default new Vuex.Store({
     assembler: (state) => { return (state.assembler) }
   },
   mutations: {
-    setMemory: (state, payload) => { state.cpu.memory.data.splice(payload.offset, payload.data.length, ...payload.data) }
+    setMemory: (state, payload) => { state.cpu.memory.data.splice(payload.offset, payload.data.length, ...payload.data) },
+    resetCPU: (state) => { state.cpu.reset() },
+    resetMemory: (state) => {
+      state.cpu.memory.reset()
+    },
+    stepCPU: (state) => { state.cpu.step() }
   },
   actions: {
     assembleSourceCode ({commit, state}, payload) {
       var asm = state.assembler.assemble(payload)
       commit('setMemory', {offset: 0, data: asm.code})
+    },
+    reset ({commit, state}) {
+      commit('resetCPU')
+      commit('resetMemory')
+    },
+    step ({commit, state}) {
+      commit('stepCPU')
     }
   }
 })
