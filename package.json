@@ -15,6 +15,8 @@
     "babel-runtime": "^6.25.0",
     "brace": "^0.10.0",
     "lodash": "^4.17.4",
+    "nearley": "^2.11.0",
+    "nearley-loader": "0.0.3",
     "pug": "^2.0.0-rc.4",
     "pug-loader": "^2.3.0",
     "quasar-extras": "0.x",
