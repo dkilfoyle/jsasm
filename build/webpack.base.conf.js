@@ -74,6 +74,10 @@ module.exports = {
           name: 'img/[name].[hash:7].[ext]'
         }
       },
+      { 
+        test: /\.ne$/,
+        loader: 'nearley-loader'
+      },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
