@@ -32,7 +32,8 @@ export default new Vuex.Store({
     resetCPU: (state) => { state.cpu.reset() },
     resetMemory: (state) => { state.cpu.memory.reset() },
     stepCPU: (state) => { state.cpu.step() },
-    loadGrammar: (state, payload) => { state.grammar.loadGrammar(payload) }
+    loadGrammar: (state, payload) => { state.grammar.loadGrammar(payload) },
+    parseCode: (state, payload) => { state.grammar.parse(payload) }
   },
   actions: {
     assembleSourceCode ({commit, state}, payload) {

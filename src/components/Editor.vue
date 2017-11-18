@@ -52,7 +52,7 @@ export default {
   methods: {
     lint: function () {
       console.log('Linting...')
-      this.$store.dispatch('parseSourceCode', this.asmsource)
+      this.$store.commit('parseCode', this.asmsource)
     },
     assemble: function () {
       console.log('Assembling...')
