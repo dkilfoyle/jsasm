@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import CPU from './CPU.js'
 import Assembler from './Assembler'
+import Grammar from './Grammar'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,8 @@ export default new Vuex.Store({
   },
   state: {
     cpu: new CPU(),
-    assembler: new Assembler()
+    assembler: new Assembler(),
+    grammar: new Grammar()
   },
   // use getters for values that are computed from state
   getters: {
@@ -22,15 +24,15 @@ export default new Vuex.Store({
     carry: (state) => { return (state.cpu.carry) },
     fault: (state) => { return (state.cpu.fault) },
     memory: (state) => { return (state.cpu.memory) },
-    assembler: (state) => { return (state.assembler) }
+    assembler: (state) => { return (state.assembler) },
+    grammar: (state) => { return (state.grammar) }
   },
   mutations: {
     setMemory: (state, payload) => { state.cpu.memory.data.splice(payload.offset, payload.data.length, ...payload.data) },
     resetCPU: (state) => { state.cpu.reset() },
-    resetMemory: (state) => {
-      state.cpu.memory.reset()
-    },
-    stepCPU: (state) => { state.cpu.step() }
+    resetMemory: (state) => { state.cpu.memory.reset() },
+    stepCPU: (state) => { state.cpu.step() },
+    loadGrammar: (state, payload) => { state.grammar.loadGrammar(payload) }
   },
   actions: {
     assembleSourceCode ({commit, state}, payload) {

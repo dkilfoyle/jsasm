@@ -77,12 +77,12 @@ module.exports = {
           name: 'img/[name].[hash:7].[ext]'
         }
       },
-      { 
-        test: /\.ne$/,
-        loader: 'nearley-loader'
-      },
+      // { 
+      //   test: /\.ne$/,
+      //   loader: 'nearley-loader'
+      // },
       {
-        test: /\.txt$/,
+        test: /\.(txt|asm|ne)(\?.*)?$/,
         loader: 'raw-loader'
       },
       {
