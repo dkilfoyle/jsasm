@@ -2,7 +2,7 @@
   q-card
     q-card-title Grammar
     q-card-main
-      ACE(:content="asmsource" @editor-update="sourceChanged")
+      ACE(:content="nesource" @editor-update="sourceChanged")
     q-card-actions
       q-btn(@click="compile") Compile
 </template>
@@ -24,30 +24,29 @@ import 'brace/mode/jsasm'
 import 'brace/mode/javascript'
 import 'brace/theme/chrome'
 
-// const nearley = require('nearley')
-// const compile = require('nearley/lib/compile')
-// const generate = require('nearley/lib/generate')
-// const nearleyGrammar = require('nearley/lib/nearley-language-bootstrapped')
+const nearley = require('nearley')
+const compile = require('nearley/lib/compile')
+const generate = require('nearley/lib/generate')
+const nearleyGrammar = require('nearley/lib/nearley-language-bootstrapped')
 
-// function compileGrammar (sourceCode) {
-//   // Parse the grammar source into an AST
-//   const grammarParser = new nearley.Parser(nearleyGrammar)
-//   grammarParser.feed(sourceCode)
-//   const grammarAst = grammarParser.results[0] // TODO check for errors
+function compileGrammar (sourceCode) {
+  // Parse the grammar source into an AST
+  const grammarParser = new nearley.Parser(nearleyGrammar)
+  grammarParser.feed(sourceCode)
+  const grammarAst = grammarParser.results[0] // TODO check for errors
 
-//   // Compile the AST into a set of rules
-//   const grammarInfoObject = compile(grammarAst, {})
-//   // Generate JavaScript code from the rules
-//   const grammarJs = generate(grammarInfoObject, 'grammar')
+  // Compile the AST into a set of rules
+  const grammarInfoObject = compile(grammarAst, {})
+  // Generate JavaScript code from the rules
+  const grammarJs = generate(grammarInfoObject, 'grammar')
 
-//   // Pretend this is a CommonJS environment to catch exports from the grammar.
-//   const module = { exports: {} }
-//   eval(grammarJs)
-//   return module.exports
-// }
+  // Pretend this is a CommonJS environment to catch exports from the grammar.
+  const module = { exports: {} }
+  eval(grammarJs)
+  return module.exports
+}
 
-import { Parser, Grammar } from 'nearley'
-import grammar from './grammar.ne'
+import ne from './asm.txt'
 
 // import { mapGetters } from 'vuex'
 
@@ -63,9 +62,7 @@ export default {
   },
   data () {
     return {
-      asmsource: `; my comment
-mylabel:
-`
+      nesource: ne
     }
   },
   computed: {
@@ -73,7 +70,8 @@ mylabel:
   methods: {
     compile: function () {
       console.log('Compiling...')
-      const parser = new Parser(Grammar.fromCompiled(grammar))
+      var grammar = compileGrammar(this.asmsource)
+      const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar))
       console.log(parser.feed(this.asmsource).results[0])
     },
     sourceChanged: function (changedSource) {

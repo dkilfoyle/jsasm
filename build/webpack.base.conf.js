@@ -82,6 +82,10 @@ module.exports = {
         loader: 'nearley-loader'
       },
       {
+        test: /\.txt$/,
+        loader: 'raw-loader'
+      },
+      {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -111,5 +115,8 @@ module.exports = {
   ],
   performance: {
     hints: false
+  },
+  node: {
+    fs: "empty"
   }
 }
