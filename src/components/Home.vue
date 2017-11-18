@@ -14,6 +14,7 @@
     .row
       .col
         Editor
+        Grammar
       .col
         Console
         CPU
@@ -30,6 +31,7 @@ import Memory from './Memory.vue'
 import Editor from './Editor.vue'
 import Console from './Console.vue'
 import Labels from './Labels.vue'
+import Grammar from './Grammar.vue'
 
 import {
   QLayout,
@@ -61,7 +63,8 @@ export default {
     Memory,
     Editor,
     Console,
-    Labels
+    Labels,
+    Grammar
   },
   data () {
     return {

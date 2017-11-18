@@ -14,6 +14,7 @@
   "dependencies": {
     "babel-runtime": "^6.25.0",
     "brace": "github:dkilfoyle/brace",
+    "fs": "0.0.1-security",
     "lodash": "^4.17.4",
     "nearley": "^2.11.0",
     "nearley-loader": "0.0.3",
