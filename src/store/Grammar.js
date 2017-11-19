@@ -7,6 +7,7 @@ class Grammar {
   constructor () {
     this.loadGrammar('main -> [.]:*')
     this.results = []
+    this.lint = null
   }
   loadGrammar (code) {
     this.grammar = this.getCompiledGrammar(code)
@@ -30,7 +31,19 @@ class Grammar {
     return module.exports
   }
   parse (code) {
-    this.results = this.parser.feed(code).results
+    try {
+      this.results = this.parser.feed(code).results
+    }
+    catch (err) {
+      console.log(err.message)
+      var re = /invalid syntax at line (\d+) col (\d+)/g
+      var match = re.exec(err.message)
+      if (match != null) {
+        this.lint = { line: parseInt(match[1]), col: parseInt(match[2]), msg: err.message }
+      }
+    }
+
+    // TODO: catch errors in this.errors
   }
 }
 

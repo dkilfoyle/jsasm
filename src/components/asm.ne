@@ -7,7 +7,7 @@ anyLine
 
 lbl -> [.a-zA-Z] [a-zA-Z0-9]:* ":"
 
-comment -> ";" [^\n]:* {% function(d) { return null; }%}
+comment -> ";" [^EOL]:* {% function(d) { return null; }%}
 blankLine -> _ {% function(d) { return null; }%}
 _ -> [ \t]:+ {% function(d) { return null; } %}
-EOL -> "\n" {% function(d) { return null; } %}
+EOL -> "\n\r?" {% function(d) { return null; } %}

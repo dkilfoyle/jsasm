@@ -2,7 +2,7 @@
   q-card
     q-card-title Source
     q-card-main
-      ACE(:content="asmsource" @editor-update="sourceChanged")
+      ACE(:content="asmsource" @editor-update="sourceChanged" :lint="grammar.lint")
     q-card-actions
       q-btn(@click="lint") Lint
       q-btn(@click="assemble") Assemble
@@ -26,11 +26,12 @@ import {
 import ACE from './ACE.vue'
 import 'brace/mode/jsasm'
 import 'brace/mode/javascript'
+import 'brace/mode/assembly_x86'
 import 'brace/theme/chrome'
 
 import helloasm from './hello.asm'
 
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'editor',
@@ -48,11 +49,13 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['grammar'])
   },
   methods: {
     lint: function () {
       console.log('Linting...')
       this.$store.commit('parseCode', this.asmsource)
+      // TODO: check this.grammar for errors
     },
     assemble: function () {
       console.log('Assembling...')
