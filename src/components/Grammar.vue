@@ -2,7 +2,7 @@
   q-card
     q-card-title Grammar
     q-card-main
-      ACE(:content="nesource" @editor-update="sourceChanged")
+      ACE(:content="gsource" @editor-update="sourceChanged")
     q-card-actions
       q-btn(@click="compile") Compile
 </template>
@@ -24,7 +24,7 @@ import 'brace/mode/jsasm'
 import 'brace/mode/javascript'
 import 'brace/theme/chrome'
 
-import ne from './asm.ne'
+import asmgrammar from './asm.pegjs'
 
 // import { mapGetters } from 'vuex'
 
@@ -40,7 +40,7 @@ export default {
   },
   data () {
     return {
-      nesource: ne
+      gsource: asmgrammar
     }
   },
   computed: {
@@ -48,10 +48,10 @@ export default {
   methods: {
     compile: function () {
       console.log('Compiling...')
-      this.$store.commit('loadGrammar', this.nesource)
+      this.$store.commit('compileGrammar', this.gsource)
     },
     sourceChanged: function (changedSource) {
-      this.asmsource = changedSource
+      this.gsource = changedSource
     }
   }
 }

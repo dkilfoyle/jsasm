@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import CPU from './CPU.js'
 import Assembler from './Assembler'
-import Grammar from './Grammar'
+import PegGrammar from './PegGrammar'
 
 Vue.use(Vuex)
 
@@ -13,7 +13,7 @@ export default new Vuex.Store({
   state: {
     cpu: new CPU(),
     assembler: new Assembler(),
-    grammar: new Grammar()
+    grammar: new PegGrammar()
   },
   // use getters for values that are computed from state
   getters: {
@@ -32,7 +32,7 @@ export default new Vuex.Store({
     resetCPU: (state) => { state.cpu.reset() },
     resetMemory: (state) => { state.cpu.memory.reset() },
     stepCPU: (state) => { state.cpu.step() },
-    loadGrammar: (state, payload) => { state.grammar.loadGrammar(payload) },
+    compileGrammar: (state, payload) => { state.grammar.compile(payload) },
     parseCode: (state, payload) => { state.grammar.parse(payload) }
   },
   actions: {

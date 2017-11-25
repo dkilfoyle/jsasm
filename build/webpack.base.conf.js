@@ -82,7 +82,7 @@ module.exports = {
       //   loader: 'nearley-loader'
       // },
       {
-        test: /\.(txt|asm|ne)(\?.*)?$/,
+        test: /\.(txt|asm|ne|pegjs)(\?.*)?$/,
         loader: 'raw-loader'
       },
       {

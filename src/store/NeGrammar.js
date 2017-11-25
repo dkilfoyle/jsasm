@@ -3,7 +3,7 @@ const compile = require('nearley/lib/compile')
 const generate = require('nearley/lib/generate')
 const nearleyGrammar = require('nearley/lib/nearley-language-bootstrapped')
 
-class Grammar {
+class NeGrammar {
   constructor () {
     this.loadGrammar('main -> [.]:*')
     this.results = []
@@ -47,4 +47,4 @@ class Grammar {
   }
 }
 
-export default Grammar
+export default NeGrammar
