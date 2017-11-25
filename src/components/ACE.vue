@@ -82,17 +82,20 @@ export default {
     },
 
     lint: function (lint) {
-      console.log('lint: ', lint.line, ',', lint.col)
+      // console.log('lint: ', lint.location.start.line, ',', lint.location.start.column)
       if (this.markerid !== null) {
         this.editor.getSession().removeMarker(this.markerid)
       }
       if (lint !== null) {
-        var range = new Range(lint.line - 1, lint.col - 1, lint.line - 1, lint.col)
+        var range = new Range(lint.location.start.line - 1,
+          lint.location.start.column - 1,
+          lint.location.end.line - 1,
+          lint.location.end.column - 1)
         this.markerid = this.editor.getSession().addMarker(range, 'ace-related-code-highlight', 'fullline')
         this.editor.getSession().setAnnotations([{
-          row: lint.line - 1,
-          col: lint.col - 1,
-          text: lint.msg,
+          row: lint.location.start.line - 1,
+          col: lint.location.start.column - 1,
+          text: lint.message,
           type: 'error'
         }])
       }

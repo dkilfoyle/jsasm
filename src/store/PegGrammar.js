@@ -2,22 +2,29 @@
 const peg = require('pegjs')
 
 class PegGrammar {
-  constructor () {
-    this.compile('main = .*')
+  constructor (grammar) {
+    this.parser = null
     this.results = []
     this.lint = null
-    this.parser = null
+    this.compile(grammar)
   }
   compile (code) {
-    this.parser = peg.generate(code)
-  }
-
-  parse (code) {
+    // console.log('compiling')
     try {
-      console.log(this.parser.parse(code))
+      this.parser = peg.generate(code)
     }
     catch (err) {
       console.log(err)
+    }
+  }
+
+  parse (code) {
+    // console.log('parsing')
+    try {
+      this.results = this.parser.parse(code)
+    }
+    catch (err) {
+      this.lint = err
     }
   }
 }

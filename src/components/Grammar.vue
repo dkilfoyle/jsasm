@@ -24,7 +24,7 @@ import 'brace/mode/jsasm'
 import 'brace/mode/javascript'
 import 'brace/theme/chrome'
 
-import asmgrammar from './asm.pegjs'
+import asmgrammar from '../store/asm.pegjs'
 
 // import { mapGetters } from 'vuex'
 

@@ -5,6 +5,8 @@ import CPU from './CPU.js'
 import Assembler from './Assembler'
 import PegGrammar from './PegGrammar'
 
+import asmgrammar from './asm.pegjs'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,7 +15,7 @@ export default new Vuex.Store({
   state: {
     cpu: new CPU(),
     assembler: new Assembler(),
-    grammar: new PegGrammar()
+    grammar: new PegGrammar(asmgrammar)
   },
   // use getters for values that are computed from state
   getters: {

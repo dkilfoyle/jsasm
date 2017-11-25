@@ -4,7 +4,7 @@
     q-card-main
       ACE(:content="asmsource" @editor-update="sourceChanged" :lint="grammar.lint")
     q-card-actions
-      q-btn(@click="lint") Lint
+      //- q-btn(@click="lint") Lint
       q-btn(@click="assemble") Assemble
       q-btn Run
       q-btn(@click="step") Step
@@ -53,9 +53,8 @@ export default {
   },
   methods: {
     lint: function () {
-      console.log('Linting...')
+      // console.log('Linting...')
       this.$store.commit('parseCode', this.asmsource)
-      // TODO: check this.grammar for errors
     },
     assemble: function () {
       console.log('Assembling...')
@@ -63,6 +62,7 @@ export default {
     },
     sourceChanged: function (changedSource) {
       this.asmsource = changedSource
+      this.lint()
     },
     reset: function () {
       console.log('Resetting...')
@@ -72,6 +72,9 @@ export default {
       console.log('Step...')
       this.$store.dispatch('step')
     }
+  },
+  mounted: function () {
+    this.lint()
   }
 }
 </script>
