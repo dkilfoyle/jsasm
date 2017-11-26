@@ -2,10 +2,11 @@
   q-card
     q-card-title Source
     q-card-main
-      ACE(:content="asmsource" @editor-update="sourceChanged" :lint="grammar.lint")
+      ACE(:content="asmsource" @editor-update="sourceChanged" :lint="asmParser.lint")
     q-card-actions
       //- q-btn(@click="lint") Lint
       q-btn(@click="assemble") Assemble
+      q-btn(@click="assemble2" :disable="asmParser.lint !== null") Assemble2
       q-btn Run
       q-btn(@click="step") Step
       q-btn(@click="reset") Reset
@@ -49,7 +50,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['grammar'])
+    ...mapGetters(['asmParser'])
   },
   methods: {
     lint: function () {
@@ -59,6 +60,13 @@ export default {
     assemble: function () {
       console.log('Assembling...')
       this.$store.dispatch('assembleSourceCode', this.asmsource)
+    },
+    assemble2: function () {
+      console.log('Assembling2...')
+      console.log('1: Parsing to AST')
+      this.$store.commit('parseCode', this.asmsource)
+      console.log('2: Assembling AST to byte code')
+      this.$store.dispatch('assembleSourceCode2', this.asmParser.results)
     },
     sourceChanged: function (changedSource) {
       this.asmsource = changedSource

@@ -21,6 +21,7 @@ class PegGrammar {
   parse (code) {
     // console.log('parsing')
     try {
+      this.lint = null
       this.results = this.parser.parse(code)
     }
     catch (err) {

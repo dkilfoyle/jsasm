@@ -9,9 +9,9 @@
             th Address
             //- th Value
         tbody
-          tr(v-for = "(address, label) in this.assembler.labels")
-            td {{ label }}
-            td {{ address | toHex }}
+          tr(v-for = "label in this.assembler2.labels")
+            td {{ label.label }}
+            td {{ label.address | toHex }}
 </template>
 
 <script>
@@ -49,7 +49,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['memory', 'assembler'])
+    ...mapGetters(['memory', 'assembler', 'assembler2'])
   },
   methods: {
   }

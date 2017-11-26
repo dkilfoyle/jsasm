@@ -41,9 +41,8 @@ label =
   id:identifier ":" __ {return {type:"label", name: id.name, line: location().start.line } }
   
 identifier = 
-  !opcode head:[a-zA-Z] tail:[a-zA-Z0-9]+ { return {type: "identifier", name: head + tail.join("") }; }
+  !opcode head:[.a-zA-Z] tail:[a-zA-Z0-9]+ { return {type: "identifier", name: head + tail.join("") }; }
 
-  
 instruction "instruction" = 
   oc:opcode _ al:argumentlist? { return {type: "instruction", opcode: oc.toUpperCase(), arglist: al, line: location().start.line }}
 

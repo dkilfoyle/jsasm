@@ -3,9 +3,10 @@ import Vuex from 'vuex'
 
 import CPU from './CPU.js'
 import Assembler from './Assembler'
-import PegGrammar from './PegGrammar'
+import Assembler2 from './Assembler2'
+import Parser from './Parser'
 
-import asmgrammar from './asm.pegjs'
+import asmGrammar from './asm.pegjs'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
   state: {
     cpu: new CPU(),
     assembler: new Assembler(),
-    grammar: new PegGrammar(asmgrammar)
+    assembler2: new Assembler2(),
+    asmParser: new Parser(asmGrammar)
   },
   // use getters for values that are computed from state
   getters: {
@@ -27,7 +29,8 @@ export default new Vuex.Store({
     fault: (state) => { return (state.cpu.fault) },
     memory: (state) => { return (state.cpu.memory) },
     assembler: (state) => { return (state.assembler) },
-    grammar: (state) => { return (state.grammar) }
+    assembler2: (state) => { return (state.assembler2) },
+    asmParser: (state) => { return (state.asmParser) }
   },
   mutations: {
     setMemory: (state, payload) => { state.cpu.memory.data.splice(payload.offset, payload.data.length, ...payload.data) },
@@ -35,12 +38,16 @@ export default new Vuex.Store({
     resetMemory: (state) => { state.cpu.memory.reset() },
     stepCPU: (state) => { state.cpu.step() },
     compileGrammar: (state, payload) => { state.grammar.compile(payload) },
-    parseCode: (state, payload) => { state.grammar.parse(payload) }
+    parseCode: (state, payload) => { state.asmParser.parse(payload) }
   },
   actions: {
     assembleSourceCode ({commit, state}, payload) {
-      var asm = state.assembler.assemble(payload)
-      commit('setMemory', {offset: 0, data: asm.code})
+      state.assembler.assemble(payload)
+      commit('setMemory', {offset: 0, data: state.assembler.code})
+    },
+    assembleSourceCode2 ({commit, state}, payload) {
+      state.assembler2.assemble(payload)
+      commit('setMemory', {offset: 0, data: state.assembler2.code})
     },
     reset ({commit, state}) {
       commit('resetCPU')

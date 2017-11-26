@@ -109,7 +109,8 @@ export default {
 
 <style lang="stylus">
 .ace-related-code-highlight {
-     background-color: red;
+     border-bottom: 1px solid red;
+     display: inline-block;
      position: absolute;
 }
 </style>
